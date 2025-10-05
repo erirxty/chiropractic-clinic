@@ -7,385 +7,109 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Merriweather+Sans:wght@400;700&family=Shippori+Mincho:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
+    <!-- Header -->
     <header>
-      <div class="container">
-        <div class="header-content">
-          <div class="logo">SAMURAI 整体院</div>
-          <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-          <nav id="mainNav">
-            <ul>
-              <li><a href="#home">ホーム</a></li>
-              <li><a href="#about">当院について</a></li>
-              <li><a href="#course">コース・料金</a></li>
-              <li><a href="#news">お知らせ</a></li>
-              <li><a href="#voice">お客様の声</a></li>
-              <li><a href="#contact">ご予約・お問い合わせ</a></li>
-            </ul>
-          </nav>
+      <div class="header__container">
+        <div class="header__content">
+          <div class="header__logo">
+            <img src="/images/Frame 2259.png" alt="SAMURAI整体院ロゴ" />
+          </div>
+
+          <div class="header__nav-wrapper">
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <nav id="mainNav">
+              <ul class="header__main_nav">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#about">当院について</a></li>
+                <li><a href="#course">コース・料金</a></li>
+                <li><a href="#news">お知らせ</a></li>
+                <li><a href="#voice">お客様の声</a></li>
+                <li><a href="#contact">ご予約・お問い合わせ</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
 
-    <section class="hero-carousel" id="home">
-      <div class="carousel-slide active">
-        <div class="carousel-image pc-only">
-          <img
-            src="/images/TOP-Carouselgroup1.png"
-            alt="PC用 メインビジュアル1"
-          />
+    <!-- Hero Carousel -->
+    <section class="header__hero__carousel" id="home">
+      <div class="header__hero__carousel-slide active">
+        <div class="header__pc-only1-1">
+          <img src="/images/Mask group.png" alt="メインビジュアル1" />
         </div>
-        <div class="carousel-image sp-only">
-          <img
-            src="/images/01_TOP01 のコピー 1.png"
-            alt="スマホ用 メインビジュアル1"
-          />
+        <div class="header__pc-only1">
+          <img src="/images/Group 2129.png" alt="テキスト1" />
+        </div>
+        <div class="header__pc-only2">
+          <img src="/images/_x31_3.png" alt="テキスト2" />
         </div>
       </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-image pc-only">
-          <img
-            src="/images/TOP_CarouselGroup2 (1).png"
-            alt="PC用 メインビジュアル2"
-          />
+      <div class="header__hero__carousel-slide">
+        <div class="header__pc-only1-1">
+          <img src="/images/Mask group (1).png" alt="メインビジュアル2" />
         </div>
-        <div class="carousel-image sp-only">
-          <img
-            src="/images/SP-TOP-Carouselgroup2.png"
-            alt="スマホ用 メインビジュアル2"
-          />
+        <div class="header__pc-only1">
+          <img src="/images/Group 2129.png" alt="テキスト1" />
+        </div>
+        <div class="header__pc-only2">
+          <img src="/images/_x31_3.png" alt="テキスト2" />
         </div>
       </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-image pc-only">
-          <img
-            src="/images/batch_toa-heftiba-hBLf2nvp-Yc-unsplash.png"
-            alt="PC用 メインビジュアル3"
-          />
+      <div class="header__hero__carousel-slide">
+        <div class="header__pc-only1-1">
+          <img src="/images/Mask group (2).png" alt="メインビジュアル3" />
         </div>
-        <div class="carousel-image sp-only">
-          <img
-            src="/images/batch_flavio-anibal-gB9Qmyn9UT8-unsplash.png"
-            alt="スマホ用 メインビジュアル3"
-          />
+        <div class="header__pc-only1">
+          <img src="/images/Group 2129.png" alt="テキスト1" />
+        </div>
+        <div class="header__pc-only2">
+          <img src="/images/_x31_3.png" alt="テキスト2" />
         </div>
       </div>
-
-      <div class="carousel-slide">
-        <div class="carousel-image pc-only">
-          <img
-            src="/images/TOP-Carouselgroup4.png"
-            alt="PC用 メインビジュアル4"
-          />
+      <div class="header__hero__carousel-slide">
+        <div class="header__pc-only1-1">
+          <img src="/images/Mask group (3).png" alt="メインビジュアル4" />
         </div>
-        <div class="carousel-image sp-only">
-          <img
-            src="/images/SP-TOP-Carouselgroup4.png"
-            alt="スマホ用 メインビジュアル4"
-          />
+        <div class="header__pc-only1">
+          <img src="/images/Group 2129.png" alt="テキスト1" />
         </div>
-      </div>
-
-      <div class="hero-overlay">
-        <div class="hero-content">
-          <h1>根本的な<br />症状改善を<br />サポートします</h1>
-          <a href="#contact" class="btn">ご予約・お問い合わせ</a>
+        <div class="header__pc-only2">
+          <img src="/images/_x31_3.png" alt="テキスト2" />
         </div>
-      </div>
-
-      <div class="carousel-indicators">
-        <span class="indicator active" onclick="goToSlide(0)"></span>
-        <span class="indicator" onclick="goToSlide(1)"></span>
-        <span class="indicator" onclick="goToSlide(2)"></span>
-        <span class="indicator" onclick="goToSlide(3)"></span>
       </div>
     </section>
+
+    <!-- News Section -->
     <section id="news">
-      <div class="container">
-        <div class="section-title">
-          <p class="en">News</p>
-          <h2>お知らせ</h2>
-        </div>
-        <div class="news-item">
-          <span class="news-date">2022/12/21</span>
-          <span class="news-tag">営業日時</span>
-          <span class="news-title">年末年始の営業時間について</span>
-        </div>
-        <div class="concept-link">
-          <a
-            href="#"
-            class="link-with-box"
-            style="
-              border: 1px solid #000000;
-              color: #000000;
-              border-radius: 10px;
-              padding: 1em 2em 0.8em;
-              line-height: 1;
-              display: inline-block;
-            "
-            >→お知らせ一覧へ</a
-          >
-      </div>
-    </section>
+      <div class="news__container">
+        <div class="news__flex-wrapper">
+          <div class="news__section-title">
+            <p class="news__en">News</p>
 
-    <section class="concept-section" id="about">
-      <div class="container">
-        <div class="section-title">
-          <p class="en">Concept</p>
-          <h2>特徴</h2>
-        </div>
-
-        <div class="concept-content-grid">
-          <div class="concept-text-area">
-            <h3>
-              日々変化する<br />カラダと心を癒す<br>パーソナル<br />トレーナーとして
-            </h3>
-            <p>
-              当院では、問診にてお客様の症状や生活スタイル、ご希望を丁寧にお伺いした上で施術方針を立てていきます。
-            </p>
-            <p>
-              また、根本的に症状を改善するために、お客様ご自身で行えるケアやストレッチもお伝えします。
-            </p>
-            <p>ご不安な点や疑問点などお気軽にご相談くださいませ。</p>
-
-            <div class="concept-link">
-              <a
-                href="#"
-                class="link-with-box"
-                style="
-                  border: 1px solid #000000;
-                  color: #000000;
-                  border-radius: 10px;
-                  padding: 1em 2em 0.8em;
-                  line-height: 1;
-                  display: inline-block;
-                "
-                >→当院について</a
-              >
+            <h2 class="news__en-h2">お知らせ</h2>
+          </div>
+          <div class="news__content-wrapper">
+            <div class="news__item">
+              <span class="news-date">2022/12/21</span>
+              <span class="news-tag">営業日時</span>
+              <span class="news-title">年末年始の営業時間について</span>
             </div>
           </div>
-          <div class="concept-image-area">
-            <img src="/images/Group 2126.png" alt="Conceptイメージ" />
+
+          <div style="text-align: center">
+            <a href="#" class="link-with-arrow">→ お知らせ一覧へ</a>
           </div>
         </div>
       </div>
     </section>
 
-    
-
-    <section class="concept-section" id="course">
-      <div class="container">
-        <div class="section-title">
-        
-          <h2>＼＼コース・料金 ／／ </h2>
-        </div>
-        <p class="course-intro">
-          当院では保険診療、自費診療と<br>もにご対応しております
-        </p>
-        <div class="intro-images">
-          <img
-            src="/images/TOP_hoken 4.png"
-            alt="保険診療のイメージ写真"
-            class="intro-image"
-          />
-          <img
-            src="/images/TOP-self1.png"
-            alt="自費診療のイメージ写真"
-            class="intro-image"
-          />
-        </div>
-        <div class="course-grid">
-          <div class="course-card">
-            <div class="course-header">
-              <h3>保険診療</h3>
-            </div>
-            <div class="course-body">
-              <ul>
-                <li>骨折・打撲・捻挫・脱臼</li>
-                <li>スポーツ診療</li>
-                <li>交通事故</li>
-              </ul>
-            
-            </div>
-          </div>
-          <div class="course-card">
-            <div class="course-header">
-              <h3>自費診療</h3>
-            </div>
-            <div class="course-body">
-              <ul>
-                <li>腰痛・肩こり</li>
-                <li>冷え性・だるさ</li>
-                <li>骨盤・背骨矯正</li>
-              </ul>
-           
-            </div>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px">
-          <a
-          href="#"
-          class="link-with-box"
-          style="
-            border: 1px solid #000000;
-            color: #000000;
-            border-radius: 10px;
-            padding: 1em 2em 0.8em;
-            line-height: 1;
-            display: inline-block;
-          ">→ コース・料金詳細へ</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="voice-section" id="voice">
-      <div class="container">
-        <div class="section-title">
-        
-          <h2>＼＼お客様の声／／</h2>
-          <p>痛みの改善に加えて自分で予防<br>もできるようになりました</p>
-        </div>
-        <div class="voice-grid">
-          <div class="voice-card">
-            <div class="voice-card-image">
-              <img
-                src="/images/TOP-user1.png"
-                alt="お客様の声 30代女性の顔写真"
-                class="round-photo"
-              />
-            </div>
-            <div class="voice-name">S・K様　30代女性</div>
-            <p class="voice-text">
-              1ヶ月で腰の痛みが軽減しました。自分で自宅でできるケアも教えていただき、お任せしてよかったです。
-            </p>
-          </div>
-          <div class="voice-card">
-            <div class="voice-card-image">
-              <img
-                src="/images/09_Kyaku2.png"
-                alt="お客様の声 40代男性"
-                class="round-photo"
-              />
-            </div>
-            <div class="voice-name">T・M様　40代男性</div>
-            <p class="voice-text">
-              マラソンで右膝が痛むので、施術を受けています。なぜ痛みが生じるのかを身体の仕組みから教えていただき、普段の練習メニューも工夫できています。
-            </p>
-          </div>
-          <div class="voice-card">
-            <div class="voice-card-image">
-              <img
-                src="/images/TOP-user3.png"
-                alt="お客様の声 60代女性"
-                class="round-photo"
-              />
-            </div>
-            <div class="voice-name">S・T様　60代女性</div>
-            <p class="voice-text">
-              転倒して足を骨折したのをきっかけに、痛みの軽減と筋肉の衰えを防ぐための方針を立てていただいています。今は毎日元気に近所を散歩できています。
-            </p>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px">
-          <a
-          href="#"
-          class="link-with-box"
-          style="
-            border: 1px solid #000000;
-            color: #000000;
-            border-radius: 10px;
-            padding: 1em 2em 0.8em;
-            line-height: 1;
-            display: inline-block;
-          ">→ お客様の声一覧へ</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-title">
-          
-          <h2>＼＼お気軽にご来院ください／／</h2>
-        </div>
-
-        <div class="access-grid">
-          <div class="access-info">
-            <h3>JR「秋葉原駅」より徒歩1分</h3>
-            <div class="access-item">
-              <strong>住所</strong>
-              <p>
-                〒101-0022<br />東京都千代田区神田練塀町300番地<br />住友不動産秋葉原駅前ビル
-                5F
-              </p>
-            </div>
-            <div class="access-item">
-              <strong>電話番号</strong>
-              <p><a href="tel:0312345678">03-1234-5678</a></p>
-            </div>
-            <div class="access-item access-schedule">
-              <strong>営業時間</strong>
-              <table>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>月</th>
-                    <th>火</th>
-                    <th>水</th>
-                    <th>木</th>
-                    <th>金</th>
-                    <th>土</th>
-                    <th>日</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>9:00〜12:30</td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                  </tr>
-                  <tr>
-                    <td>15:30〜20:00</td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                    <td><span class="circle-mark"></span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="access-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.068855133681!2d139.77207767578852!3d35.69992317258122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188fee13660e23%3A0x77137876edf742ac!2z5L2P5Y-L5LiN5YuV55Sj56eL6JGJ5Y6f6aeF5YmN44OT44Or!5e0!3m2!1sja!2sjp!4v1759479730803!5m2!1sja!2sjp"
-              width="100%"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script src="/js/main.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

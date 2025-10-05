@@ -4,859 +4,265 @@
   box-sizing: border-box;
 }
 
-:root {
-  --light-green: #f0f5e1;
-  --grass-green: #96c519;
-  --green: #1b9240;
-  --moss-green: #468459;
-  --dark-green: #0c4324;
-  --white: #ffffff;
-  --black: #000000;
-}
-
 body {
   font-family: "Noto Sans JP", sans-serif;
-  line-height: 1.8;
-  color: var(--black);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Header */
+/* ヘッダー */
 header {
-  background: var(--white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
   z-index: 1000;
 }
 
-.header-content {
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 40px;
+}
+
+.header__content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
 }
 
-.logo {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--dark-green);
+/* ヒーローセクションの高さ */
+.header__hero__carousel {
+  position: relative;
+
+  height: 400px;
+
+  margin-top: 0; /* この設定は正しい */
+  overflow: hidden;
 }
 
-nav ul {
+/* ナビゲーションバー全体の設定 */
+.header__bar {
+  /* ... 他の設定 ... */
+
+  /* ✅ 左右のパディングを減らして、ロゴを左に寄せる */
+  padding: 15px 5px; /* 上下15px、左右15px */
+}
+
+/* ロゴの親要素 */
+.header__logo {
+  /* ロゴとナビゲーションの間の隙間は、Flexboxの space-between で自動調整されるため、
+     この margin-right は不要かもしれません */
+  margin-right: 0px;
+}
+
+/* ロゴのサイズ設定 */
+.header__logo img {
+  width: 240px;
+  height: 32px;
+
+  /* ❌ 負のマージンや位置調整用のマージンは全て削除 */
+  /* margin-top: -50px; や margin-left: -20px; などは全て削除 */
+  margin: 0; /* マージンをゼロにリセット */
+
+  display: block;
+}
+
+/* ナビゲーション */
+.header__nav-wrapper nav {
+  display: block;
+}
+
+.header__main_nav {
   display: flex;
   list-style: none;
-  gap: 35px;
+  gap: 30px;
+  align-items: center;
 }
 
-nav a {
+.header__main_nav li a {
   text-decoration: none;
-  color: var(--black);
+  color: white;
+  font-size: 14px;
   font-weight: 500;
-  font-size: 15px;
   transition: color 0.3s;
 }
 
-nav a:hover {
-  color: var(--green);
+.header__main_nav li a:hover {
+  color: #468459;
 }
 
+/* ご予約ボタンを緑色に */
+.header__main_nav li:last-child a {
+  background-color: #468459;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.header__main_nav li:last-child a:hover {
+  background-color: #3d8350;
+}
+
+/* モバイルメニューボタン */
 .mobile-menu-btn {
   display: none;
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
 }
-/* Hero Carousel */
-.hero-carousel {
+
+/* ヒーローセクション */
+.header__hero__carousel {
   position: relative;
-  height: 100vh;
+  height: 650px;
+  margin-top: 0;
   overflow: hidden;
-  /* isolation: isolate; は不要になる可能性が高いですが、念のため残しておきます */
-  isolation: isolate;
 }
 
-/* ⬇️ 追加: 画像の左右にカーブを表現する擬似要素 ⬇️ */
-.hero-carousel::before,
-.hero-carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 50%; /* 画面の半分 */
-  height: 100%;
-  background-color: var(--white); /* 背景を白くする */
-  z-index: 15; /* テキスト（z-index: 20）の下、画像の上（z-index: 0 or 1）に配置 */
-}
-
-/* ⬇️ 追加: 左側のカーブ ⬇️ */
-.hero-carousel::before {
-  left: 0;
-  /* 左上から右下に伸びる円のカーブを作成 */
-  /* border-bottom-right-radius: 1000px 1000px; */
-  /* よりシンプルな clip-path で円弧を表現 */
-  clip-path: ellipse(40% 100% at 0% 50%); /* 左端に楕円の半分を配置 */
-}
-
-/* ⬇️ 追加: 右側のカーブ ⬇️ */
-.hero-carousel::after {
-  right: 0;
-  /* 左上から右下に伸びる円のカーブを作成 */
-  /* border-bottom-left-radius: 1000px 1000px; */
-  /* よりシンプルな clip-path で円弧を表現 */
-  clip-path: ellipse(40% 100% at 100% 50%); /* 右端に楕円の半分を配置 */
-}
-
-/* テキストの重ね合わせは維持 */
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* デフォルトで100% */
-  max-width: 700px; /* ⚠️ 調整が必要: テキストの表示領域を制限し、右のカーブを避ける ⚠️ */
-  height: 100%;
-  display: flex;
-  align-items: center;
-  /* justify-content: center; は使わないか、left に変更 */
-  justify-content: flex-start; /* テキストを左寄せにする (Figmaデザイン準拠) */
-  padding-left: 10%; /* ⚠️ 調整が必要: テキストの左側の余白 ⚠️ */
-  z-index: 20;
-}
-
-.carousel-slide {
+.header__hero__carousel-slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.8s ease-in-out, visibility 0.8s;
-
-  /* ⬇️ 決定的な修正: 画像全体を右側に配置し、左側を大きく円弧状に切り抜く ⬇️ */
-  /* Figmaのデザインに最も近い clip-path の値 */
-  /* polygon(x1 y1, x2 y2, ...) で四角形の座標を切り抜き、左下の座標を調整する */
-  /* この形状は ellipse ではなく、左下を起点にした多角形（polygon）に近い */
-  /* ⚠️ 精度を上げるため、左下のカーブを大きくするために、複雑な clip-path を適用 ⚠️ */
-  clip-path: polygon(
-    0 0,
-    /* 左上 */ 100% 0,
-    /* 右上 */ 100% 100%,
-    /* 右下 */ 0% 100%,
-    /* 左下（ここが起点） */ 40% 50%
-      /* 中心から左に40%の位置をカーブの中心とする */
-  );
-  /* ⬆️ clip-path の別の試み: 楕円を使って右下に大きくカーブをかける ⬆️ */
-  /* clip-path: ellipse(70% 100% at 90% 50%); */
-
-  /* ⬇️ Figmaデザインの再現に最も近い clip-path を使用 ⬇️ */
-  /* 左側の白エリアを残すためには、画像を左にずらす必要がある */
-  transform: translateX(-15%); /* 画像全体を左に15%ずらす（白エリアを作る） */
-  width: 115%; /* ずらした分、幅を広げて画面を覆う */
-
-  /* ⬇️ 画像の右側にカーブをかける clip-path (左側の白エリアは transform で作成) ⬇️ */
-  clip-path: ellipse(80% 100% at 100% 50%); /* 右側全体を大きく切り抜く */
+  transition: opacity 0.8s ease-in-out;
 }
 
-.carousel-slide.active {
+.header__hero__carousel-slide.active {
   opacity: 1;
-  visibility: visible;
-  /* アクティブなスライドも同じクリップパスを適用 */
-  clip-path: ellipse(65% 100% at 85% 50%);
+  z-index: 2;
 }
 
-/* トップ画像 */
-.carousel-image img {
-  /* 画像がコンテナを埋め尽くし、縦横比を保ち、はみ出した部分を切り取る */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* -------------------------------------------------------------------------- */
-/* PC/タブレット向けのデフォルト設定 (画面幅が広い場合)                      */
-/* -------------------------------------------------------------------------- */
-
-/* スマホ版の画像を非表示にする */
-.sp-only {
-  display: none;
-}
-
-/* PC版の画像は表示する */
-.pc-only {
-  display: block;
-}
-
-/* -------------------------------------------------------------------------- */
-/* スマホ向けの切り替え設定 (画面幅が約767px以下の場合)                       */
-/* -------------------------------------------------------------------------- */
-@media (max-width: 767px) {
-  /* PC版の画像を非表示にする */
-  .pc-only {
-    display: none;
-  }
-
-  /* スマホ版の画像を表示する */
-  .sp-only {
-    display: block;
-    /* スマホ版が縦長の場合、ここで縦横比を調整するCSSも設定します */
-    /* .carousel-image の高さなどを調整することで縦長に見せます */
-  }
-
-  .carousel-slide,
-  .carousel-slide.active {
-    clip-path: none; /* カーブなしの四角形に戻す */
-    transform: none; /* ずらしもリセット */
-    width: 100%;
-  }
-}
-
-/* イントロ画像用Flexコンテナ */
-.intro-images {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 40px auto;
-}
-/* イントロ画像 */
-.intro-image {
-  /* 修正: inline-block を解除し、Flexアイテムとして自動調整 */
-  /* display: inline-block; */
-  /* 写真間に余白を追加 */
-  /* margin: 0 15px; */
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  border-radius: 10%;
-}
-/* お客様の声　写真 */
-/* 写真を丸くするためのCSS */
-.round-photo {
-  /* 幅と高さを固定して正方形にする（例: 80px） */
-  width: 180px;
-  height: 180px;
-  /* 50%で角を丸くし、真円にする */
-  border-radius: 50%;
-  /* 画像が欠けることなく、領域を覆うように調整 */
-  object-fit: cover;
-  /* ⬇️ 追加: カード内の余白 ⬇️ */
-  margin-bottom: 15px;
-}
-
-/* 画像コンテナのスタイル (中央寄せと余白) */
-.voice-card-image {
-  /* 写真を中央に寄せる */
-  text-align: center;
-  /* 上下に適切な余白を設定する（お好みで調整） */
-  margin: 15px 0;
-}
-
-/* カード全体の配置調整 */
-.voice-card {
-  /* (必要であれば) カード内の要素をFlexboxで並べたり、余白を調整したりします */
-  display: flex;
-  flex-direction: column;
-  /* ⬇️ 修正: カード内の要素を中央寄せにする ⬇️ */
-  align-items: center;
-  text-align: center;
-}
-
-/* ⬇️ スマホではテキストを中央寄せに戻す ⬇️ */
-.hero-overlay {
-  justify-content: center;
-  padding-left: 0;
-}
-
-.hero-content {
-  text-align: center;
-  color: var(--white); /* 画像の上に重ねるので白に戻す */
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  max-width: 90%;
-}
-
-.hero-content h1 {
-  font-family: "Shippori Mincho", serif;
-  font-size: 52px;
-  font-weight: 600;
-  margin-bottom: 30px;
-  line-height: 1.5;
-}
-
-.hero-content .btn {
-  /* 背景は var(--green) で維持 */
-  color: var(--white);
-  /* 影は削除 */
-  box-shadow: none;
-}
-
-/* ⬇️ インジケーターは画像上に配置されるため、色を黒に近いものに変更 ⬇️ */
-.carousel-indicators {
+.header__pc-only1-1 img {
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 30; /* テキストより更に上 */
+  top: 0px;
+  left: 350px;
+  width: 1000px;
+  height: 584px;
+  z-index: 30;
 }
 
-.indicator {
-  background: rgba(0, 0, 0, 0.5); /* 黒っぽい半透明 */
-}
-.indicator.active {
-  background: var(--dark-green); /* アクティブ時は濃い色 */
-}
-
-/* Sections */
-section {
-  padding: 80px 0;
+.header__pc-only1 img {
+  position: absolute;
+  top: 80px;
+  left: 43px;
+  width: 231px;
+  height: 433px;
+  z-index: 5;
 }
 
-/* Section Title の p.en (Concept) の色も修正が必要であれば追加 */
-.section-title p.en {
-  /* ⬇️ 確認: アクセントカラーを使用 ⬇️ */
-  color: #468459;
-  align-items: center;
-  justify-content: center;
-  /* ... 他のスタイル ... */
+.header__pc-only2 img {
+  position: absolute;
+  top: -160px;
+  left: 330px;
+  width: 600px;
+  height: 616px;
+  z-index: 20;
 }
 
-.en {
-  font-family: "Merriweather Sans", sans-serif;
-  color: #468459;
-}
-
-/* ------------------------------------------------ */
-/* コース・料金セクションのタイトルと説明文の調整 */
-/* ------------------------------------------------ */
-
-/* タイトルと説明文が入っているコンテナを中央揃えにする */
-/* Courseセクション全体を指すセレクタ（例：section[id="course"]または.course-sectionなど）に適用するのが望ましい */
-section[id="course"] .section-title,
-section[id="course"] .course-intro {
-  text-align: center;
-}
-
-.course-section .intro-images {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 30px auto 50px;
-}
-.course-section .intro-images img {
-  width: 100%;
-  max-width: 350px;
-  height: auto;
-  object-fit: cover;
-}
-
-.course-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2カラム */
-  gap: 30px;
-  max-width: 900px;
-  margin: 0 auto 50px;
-}
-
-/* ------------------------------------------------ */
-/* コース・料金セクション全体の色とスペース */
-/* ------------------------------------------------ */
-
-/* タイトルと説明文の色を濃い緑に、中央揃えを確実に適用 */
-.course-section .section-title h2,
-.course-section .course-intro {
-  color: #0c4324 !important; /* 濃い緑 */
-  text-align: center; /* 中央揃え */
-}
-.course-section .course-intro {
-  margin-bottom: 40px; /* 説明文の下にスペース */
-}
-
-/* リンクボタンのテキストの色を濃い緑に */
-.course-section .link-with-arrow {
-  color: #0c4324 !important;
-  margin-bottom: 10px;
-}
-
-/* カード内の見出し、リスト、料金のテキスト全てを濃い緑に */
-.course-grid .course-card h3,
-.course-grid .course-card ul li,
-.course-grid .price-box,
-.course-grid .price-label,
-.course-grid .price-amount {
-  color: #0c4324;
-  margin-bottom: 10px;
-}
-/* カード内のH3、リストなどのスタイルは前回の回答を参照 */
-
-/* 2. h2 (タイトル) のスタイル */
-section[id="course"] .section-title h2 {
-  /* ⬇️ 色を濃い緑 #0c4324 に設定 ⬇️ */
-  color: #468459 !important;
-
-  /* ⬇️ フォントの確認 ⬇️ */
-  font-family: "Merriweather Sans", sans-serif;
-  font-size: 30px; /* 必要に応じてサイズを調整 */
-}
-
-/* 3. p.course-intro (説明文) のスタイル */
-.course-intro {
-  /* ⬇️ 色を濃い緑 #0c4324 に設定 ⬇️ */
-  color: #468459;
-
-  /* ⬇️ 必要に応じてフォントとサイズを調整 ⬇️ */
-  font-size: 16px;
-  line-height: 1.8;
-
-  /* 上下の余白を調整 */
-  margin-top: 10px;
-  margin-bottom: 40px;
-}
-
-concept-section .section-title p.en {
-  /* ⬇️ 修正: テキストを濃い緑色 #0c4324 に設定 ⬇️ */
-  color: #468459;
-
-  /* ⬇️ 必要に応じてフォントとサイズも設定 ⬇️ */
-
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-.concept-section .section-title h2 {
-  /* ⬇️ 修正: メインタイトルに濃い緑色 #0c4324 を確実に適用 ⬇️ */
-  color: #468459 !important;
-
-  /* ⬇️ フォントの確認（Figmaに基づきShippori Minchoを使用） ⬇️ */
-  font-family: "Merriweather Sans", serif;
-  font-size: 36px; /* サイズはFigmaに合わせて調整 */
-  font-weight: 600;
-
-  /* その他、必要に応じてマージンなどを調整 */
-  margin-top: 5px;
-}
-
-/* Concept Section */
-.concept-section {
-  background: var(--white);
-  padding: 80px 0; /* 上下の余白（既存の設定を維持または追加） */
-}
-
-/* ⬇️ 追加: Conceptセクションの横並びレイアウト (Figmaデザイン準拠) ⬇️ */
-.concept-content-grid {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  margin-top: 50px;
-  /* ⬇️ 修正: コンテナ全体の最大幅を少し狭くし、要素を中央に寄せる ⬇️ */
-  max-width: 960px; /* 例: 1100px から 960px に縮小 */
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: space-between;
-}
-
-.section-title h2 {
-  font-family: "Shippori Mincho", serif;
-  font-size: 36px;
-  /* ⬇️ 確認: 濃い緑を使用 ⬇️ */
-  color: 0c4324;
-  /* あるいは --moss-green など、FigmaのGreenに近い色 */
-  /* ... 他のスタイル ... */
-}
-
-.concept-content-grid h3 {
-  font-family: "Shippori Mincho", serif;
-  font-size: 30px;
-  /* ⬇️ 修正: 文字色を明るい緑 (FigmaのGrass Green) に変更 ⬇️ */
-  color: #468459;
-  text-align: left;
-  margin-bottom: 40px;
-  line-height: 1.8;
-}
-.concept-content-grid p {
-  /* 段落の文字色は黒（Figma準拠） */
-  color: var(--black);
-  margin-bottom: 20px;
-  line-height: 2;
-}
-
-.concept-text-area {
-  flex: 1;
-  /* ⬇️ 修正: 画像エリアの最大幅をテキストエリアよりも大きくする ⬇️ */
-  max-width: 500px;
-  margin-right: 0;
-}
-
-.concept-text-area h3 {
-  color: #468459; /* FigmaのGrass Greenに近い色 */
-}
-
-.concept-image-area {
-  flex: 1;
-}
-.concept-image-area img {
-  /* ... 既存のスタイルを維持 ... */
-  height: 500px; /* 画像の高さを維持 */
-  object-fit: cover;
-  border-radius: 8px;
-
-  /* ⬇️ 修正: 画像のズレを微調整 (右へのズレを少し減らす) ⬇️ */
-  transform: translateX(0%); /* 5% のズレを 0% に戻す */
-  width: 100%; /* 100% に戻す */
-
-  /* Figmaのデザインのように画像が右側にはみ出ているように見せるには、
-     .concept-content-grid の右側を .container の幅を超えて表示させる必要があります。
-     今回は、グリッド幅を調整し、要素全体が中央にまとまるようにしています。 */
-}
-
-/* ⬆️ Conceptセクションの横並びレイアウト追加ここまで ⬆️ */
-
-.concept-content {
-  /* HTMLで concept-content-grid を使ったため、この max-width は不要になる */
-  /* max-width: 900px; */
-  /* margin: 0 auto; */
-}
-
-.concept-content h3 {
-  font-family: "Shippori Mincho", serif;
-  font-size: 30px;
-  color: #468459;
-  /* ⬇️ 修正: テキストエリア内で左寄せにする ⬇️ */
-  text-align: left;
-  margin-bottom: 40px;
-  line-height: 1.8;
-}
-
-.concept-content p {
-  margin-bottom: 20px;
-  line-height: 2;
-}
-
-.concept-link {
-  /* ⬇️ 修正: テキストエリア内で左寄せにする ⬇️ */
-  text-align: left;
-  margin-top: 40px;
-}
-
-.link-with-arrow {
-  display: inline-flex; /* 要素をインラインにし、内部要素をフレックスで制御 */
-  align-items: center; /* 垂直方向の中央揃え */
-  gap: 8px; /* 矢印とテキストの間のスペース */
-
-  font-family: "Shippori Mincho", serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--dark-green); /* 文字色は濃い緑（必要に応じて調整） */
-  text-decoration: none;
-}
-/* ------------------------------------------------ */
-/* Voice Section - タイトルと説明文の強制適用（最終版）*/
-/* ------------------------------------------------ */
-.voice-section .section-title h2 {
-  /* ⬇️ ご指定の色 #464859 を最優先で適用 ⬇️ */
-  color: #468459 !important;
-  text-align: center !important;
-  font-family: "Merriweather Sans", serif !important;
-  font-size: 36px !important;
-  font-weight: bold !important;
-}
-
-.voice-section .section-title p {
-  /* ⬇️ ご指定の色 #464859 を最優先で適用 ⬇️ */
-  color: #468459 !important;
-  text-align: center !important;
-  margin-top: 10px !important;
-  margin-bottom: 50px !important;
-  font-family: "Merriweather Sans", serif;
-}
-.link-with-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* 円とテキストの間のスペース */
-
-  font-family: "Shippori Mincho", serif !important;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--dark-green); /* 文字色は濃い緑 */
-  text-decoration: none;
-}
-
-/* ⬇️ 修正: 円のアイコン（::before） ⬇️ */
-.link-with-arrow::before {
-  content: "";
-  display: block;
-  /* 円のサイズ */
-  width: 24px;
-  height: 24px;
-  border-radius: 50%; /* 円形にする */
-  /* 円の背景色: Figmaの淡い色（Light Green）を使用 */
-  background-color: var(--light-green);
-  position: relative;
-
-  /* ⬇️ 内部の矢印をCSSで表現するために、ここでは省略し、::afterで矢印を円の中に配置します ⬇️ */
-}
-
-/* ⬇️ 追加: 円の中にFigmaのデザインに見られる小さな矢印（またはプラス）を再現 ⬇️ */
-/* ------------------------------------------------ */
-/* Concept Section リンクボタンの最終修正           */
-/* ------------------------------------------------ */
-
-.link-with-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  font-family: "Shippori Mincho", serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--dark-green);
-  text-decoration: none;
-}
-
-/* ⬇️ 修正: 円のアイコン（::before） - 内部の矢印の基準点にする ⬇️ */
-.link-with-arrow::before {
-  content: "";
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: var(--light-green);
-
-  /* ⬇️ 修正: 矢印（::after）の基準点にする ⬇️ */
-  position: relative;
-}
-
-/* ------------------------------------------------ */
-/* Concept Section リンクボタンの最終確定版         */
-/* ------------------------------------------------ */
-
-.link-with-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* 円とテキストの間のスペース */
-
-  font-family: "Shippori Mincho", serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--dark-green); /* テキスト色 */
-  text-decoration: none;
-
-  /* ⬇️ インラインスタイルを無効化するために、paddingなどをリセット ⬇️ */
-  padding: 0;
-  border: none;
-}
-
-/* ⬇️ 円のアイコン（::before）- 矢印（::after）のコンテナとして機能 ⬇️ */
-.link-with-arrow::before {
-  content: "";
-  /* ⬇️ 修正: flexコンテナにして、::after を内部で中央揃えにする ⬇️ */
-  display: flex;
-  justify-content: center; /* 水平中央 */
-  align-items: center; /* 垂直中央 */
-
-  width: 24px;
-  height: 24px;
-  border-radius: 50%; /* 円形 */
-  background-color: var(--light-green); /* 淡い緑の背景 */
-
-  /* ⬇️ ::after を重ねるための基準点 ⬇️ */
-  position: relative;
-}
-
-/* ------------------------------------------------ */
-/* Concept Section ボックス型ボタン 最終確定版      */
-/* ------------------------------------------------ */
-
-.link-with-box {
-  /* ⬇️ Figmaの色を上書き: 枠線とテキストを濃い緑にする ⬇️ */
-  border: 1px solid var(--dark-green) !important;
-  color: var(--dark-green) !important; /* テキスト色: 濃い緑 */
-
-  /* ⬇️ ホバー効果のための transition ⬇️ */
-  transition: all 0.2s ease-in-out;
-  background-color: transparent !important; /* 背景色: 透明（実質白） */
-}
-
-/* ------------------- */
-/* ホバー時のスタイル  */
-/* ------------------- */
-.link-with-box:hover {
-  /* ⬇️ 修正: ホバー時に背景を淡い緑、文字を白にする ⬇️ */
-  background-color: #468459 !important; /* 背景色: 淡い緑 */
-  color: var(--white) !important; /* 文字色: 白 */
-
-  /* 枠線は濃い緑で維持 */
-  border-color: var(--dark-green) !important;
-}
-
-/* ... [省略: 既存の .voice-name, .voice-text の設定] ... */
-
-.voice-name {
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #0c4324;
-}
-
-/* Access Section */
-.access-grid {
-  display: flex; /* Flexコンテナにする */
-  gap: 40px; /* 左右の要素間のスペース */
-  align-items: flex-start; /* 要素の配置を上端揃えにする */
-}
-
-/* 左右の要素の幅を調整 */
-.access-info {
-  /* 左側の情報エリア (例: 40%の幅) */
-  flex: 0 0 40%;
-}
-
-/* ... [省略: 既存の .access-info, .schedule-table の設定] ... */
-
-/* ⬇️ 修正: 地図のダミー背景を削除し、埋め込み地図が表示されるようにする ⬇️ */
-.access-map {
-  width: 100%;
-  height: 450px;
-  /* 以下のダミー設定を削除またはコメントアウト */
-  /* background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* color: var(--moss-green); */
-  border-radius: 10px;
-  overflow: hidden; /* 埋め込み地図の角を丸くする */
-  flex: 1;
-}
-
-.access-map iframe {
-  /* Figmaのデザインでは地図もカード内に収まっていますが、ここでは幅を100%に */
-  display: block;
-  height: 450px; /* 必要に応じて調整 */
-}
-/* ⬆️ Access Section 修正ここまで ⬆️ */
-
-/* ... [省略: 既存のテーブル, CTA, Footer の設定] ... */
-
-/* voice-grid に Flexbox を適用 */
-.voice-grid {
-  display: flex; /* Flexコンテナにする */
-  justify-content: space-between; /* カード間に均等なスペースを設ける (デザインによっては center や space-around も検討) */
-  gap: 20px; /* カード間のスペース (ブラウザ対応を考慮して gap を使用。space-betweenと併用しない場合はより効果的) */
-  margin-top: 40px; /* 必要に応じてタイトルや見出しとの間にスペースを設ける */
-}
-
-/* voice-card の幅を調整して3等分にする */
-.voice-card {
-  width: calc(
-    100% / 3 - 20px * 2 / 3
-  ); /* 3分割しつつ、gapを考慮した計算 (gap: 20pxの場合の例) */
-  /* width: 32%; のようにパーセンテージでざっくり指定するだけでも横並びになります */
-  text-align: center; /* カード内のテキストを中央揃えにする */
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .feature-grid,
-  .voice-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* レスポンシブ */
 @media (max-width: 768px) {
-  nav {
-    display: none;
-  }
-
   .mobile-menu-btn {
     display: block;
   }
 
-  .hero-carousel {
-    position: relative;
-    /* Figmaでは画像が画面いっぱいに表示されていますが、
-       ここではカーブを表現するため、背景色（白）が見えるように height: 100vh; は維持 */
-    height: 100vh;
-    overflow: hidden;
-    background-color: var(--white); /* カーブの外側を白くする */
+  .header__main_nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  .hero-content h1 {
-    font-size: 36px;
-  }
-
-  /* ⬇️ Conceptセクションのスマホ対応 ⬇️ */
-  .concept-content-grid {
+  .header__main_nav.active {
     display: flex;
-    gap: 40px;
-    align-items: center;
-    margin-top: 50px;
-    /* ⬇️ 修正: max-widthを調整し、要素全体が中央にくるようにする ⬇️ */
-    max-width: 1100px; /* 例: 幅を広めに設定 */
-    margin-left: auto; /* 中央寄せ */
-    margin-right: auto; /* 中央寄せ */
-    justify-content: space-between;
   }
 
-  .concept-text-area,
-  .concept-image-area {
-    flex: none;
-    max-width: 100%;
+  .header__hero__carousel {
+    height: 400px;
+  }
+
+  .header__pc-only1,
+  .header__pc-only2 {
+    display: none;
+  }
+
+  .header__pc-only1-1 img {
     width: 100%;
   }
-  .concept-content h3,
-  .concept-link {
-    text-align: center; /* スマホでは中央寄せに戻す */
-  }
-  .concept-image-area img {
-    height: auto;
-  }
-  /* ⬆️ Conceptセクションのスマホ対応追加ここまで ⬆️ */
+}
 
-  /* ⬇️ Course Section の画像（縦積み） ⬇️ */
-  .intro-images {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  .intro-image {
-    max-width: 100%;
-  }
-  /* ⬆️ Course Section の画像修正ここまで ⬆️ */
+/* お知らせセクション */
+#news {
+  margin-top: 50px;
+  margin-bottom: 200px;
+}
 
-  .voice-grid {
-    flex-direction: column; /* 縦並びに戻す */
-    gap: 30px; /* 縦のスペースを調整 */
-  }
-  .voice-card {
-    width: 100%; /* 幅をいっぱいに広げる */
-  }
+.news__flex-wrapper {
+  display: flex;
+  align-items: center; /* 垂直方向の中央に揃える */
+  gap: 40px; /* タイトルと記事の間の隙間 */
+  padding: 20px 0;
+}
 
-  .feature-grid,
-  .course-grid,
-  .voice-grid,
-  .access-grid {
-    grid-template-columns: 1fr;
-  }
+.news__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 0; /* 例: 上側のパディングをゼロに（必要に応じて調整） */
+  padding-bottom: 0; /* 下側のパディングをゼロに（必要に応じて調整） */
+}
+.news__section-title {
+  font-family: noto sans jp;
+  color: #468459;
+  text-align: left;
+  margin-bottom: 40px;
+  display: flex;
+  gap: 10px;
+}
 
-  .access-grid {
-    flex-direction: column; /* 縦並びに戻す */
-    gap: 20px;
-  }
-  .access-info,
-  .access-map {
-    flex: 0 0 100%; /* 幅をいっぱいに広げる */
-  }
+.news__en {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.news__en-h2 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+.news__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  font-family: noto sans jp;
+  gap: 20px;
+  flex-grow: 1;
+  margin-bottom: 40px;
+}
 
-  section {
-    padding: 60px 0;
-  }
+.news-tag {
+  background-color: #468459;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.link-with-arrow {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 400;
+  transition: color 0.3s;
+  margin-bottom: 40px;
+
+  /* 💡 リンクを右に寄せるためにブロック要素に変更 */
+  display: block;
+  /* リンクがブロック要素になったら、その中身を右に寄せる */
+  text-align: right;
 }
