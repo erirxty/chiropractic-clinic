@@ -19,7 +19,6 @@ header {
 }
 
 .header__container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 15px 40px;
 }
@@ -52,7 +51,9 @@ header {
 .header__logo {
   /* ロゴとナビゲーションの間の隙間は、Flexboxの space-between で自動調整されるため、
      この margin-right は不要かもしれません */
-  margin-right: 0px;
+
+  margin-left: -10px;
+  margin-top: 10px; /* 左側に少しマージンを追加して、端にくっつかないようにする */
 }
 
 /* ロゴのサイズ設定 */
@@ -77,6 +78,7 @@ header {
   list-style: none;
   gap: 30px;
   align-items: center;
+  margin-right: 100px;
 }
 
 .header__main_nav li a {
@@ -140,7 +142,7 @@ header {
   top: 0px;
   left: 350px;
   width: 1000px;
-  height: 584px;
+  height: 650px;
   z-index: 30;
 }
 
@@ -200,7 +202,6 @@ header {
 
 /* お知らせセクション */
 #news {
-  margin-top: 50px;
   margin-bottom: 200px;
 }
 
@@ -259,10 +260,123 @@ header {
   color: #000000;
   font-weight: 400;
   transition: color 0.3s;
-  margin-bottom: 40px;
 
   /* 💡 リンクを右に寄せるためにブロック要素に変更 */
   display: block;
   /* リンクがブロック要素になったら、その中身を右に寄せる */
   text-align: right;
+}
+
+.concept__section {
+  padding: 20px 80px;
+}
+
+.concept__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.concept__icon {
+  width: 123px;
+  height: 24px;
+}
+
+.concept__section-title {
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+  gap: 15px; /* アイコンとテキストの間の隙間 */
+  margin-bottom: 40px; /* 下側の余白を維持 */
+}
+
+.concept__section-title h2 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #468459;
+}
+
+.concept-content h3 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #468459;
+  line-height: 54px;
+
+  margin-bottom: 20px;
+}
+
+.concept-content p {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+
+/* 💡 テキストブロックと画像を横並びにするコンテナ */
+.concept__flex-wrapper {
+  display: flex; /* これで子要素が横並びになる */
+  justify-content: space-between; /* 左右に均等に配置 */
+  align-items: flex-start; /* 上端を揃える */
+  gap: 40px; /* テキストと画像の間隔 */
+}
+
+/* テキスト部分の幅を設定 */
+.concept__text-wrapper {
+  /* 例: 全体の 55%〜60% 程度をテキストに使う */
+  width: 55%;
+}
+
+/* 画像部分の幅を設定 */
+.concept__image-wrapper {
+  /* 例: 全体の 40%〜45% 程度を画像に使う */
+  width: 40%;
+}
+
+/* 寄せたい画像がコンテナ内でレスポンシブになるように設定 */
+.concept__side-image {
+  max-width: 400%;
+  height: 507px;
+
+  display: block;
+}
+
+.link-with-arrow {
+  display: inline-block;
+  background-color: #fff;
+  border: solid 2px #000000;
+  color: #000000;
+  border-radius: 10px;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: all 0.3s ease 0s;
+  margin-left: 200px;
+}
+.link-with-arrow:hover {
+  color: #0000ff;
+  background-color: #fff;
+  transform: scale(1.2);
+}
+
+.concept__section {
+  /* 1. 背景画像をカンマ区切りで両方指定 (記述順がZ軸順、最初が手前) */
+  /* Title (2).png が左側、Union.png が右側なので、この順に配置 */
+  background-image: url("/images/Title\ \(2\).png"), url("/images/Union.png");
+
+  /* 2. サイズを画像ごとにカンマ区切りで指定 */
+  background-size: 530px, 300px;
+
+  /* 3. 位置を画像ごとにカンマ区切りで指定 */
+  background-position: left, right; /* 最初の画像(Title)は left、2番目の画像(Union)は right */
+
+  /* 4. 繰り返しを画像ごとに指定（両方繰り返さない場合） */
+  background-repeat: no-repeat, no-repeat;
+
+  /* その他の設定 */
+  margin-top: -100px;
+  position: relative;
+  z-index: 1; /* z-indexは低い値（例: 1）にし、他のコンテンツが背景の上にくるようにします */
 }
