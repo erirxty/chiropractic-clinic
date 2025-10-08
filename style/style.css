@@ -269,6 +269,7 @@ header {
 
 .concept__section {
   padding: 20px 80px;
+  max-width: 1280px;
 }
 
 .concept__container {
@@ -393,6 +394,7 @@ header {
 /* 💡 元々Vector.pngを設定していたセクションから、その設定を削除する */
 
 #course {
+  max-width: 1280px;
   padding: 20px 80px;
   background-color: #f0f5e1;
 
@@ -524,4 +526,81 @@ header {
 
   /* 💡 リストマーカー（黒い点）をリストの内側に移動して中央寄せを支援 */
   list-style-position: inside;
+}
+
+/* お客様の声セクション */
+.voice-section {
+  /* 💡 背景色を設定 */
+  background-image: url("/images/Subtract.png"), url("/images/Frame\ 2556.png");
+
+  /* 2. サイズを画像ごとにカンマ区切りで指定 */
+  background-size: 700px, 1400px;
+
+  /* 3. 位置を画像ごとにカンマ区切りで指定 */
+  background-position: center center, top center; /* 最初の画像(Title)は left、2番目の画像(Union)は right */
+
+  /* 4. 繰り返しを画像ごとに指定（両方繰り返さない場合） */
+  background-repeat: no-repeat, no-repeat;
+
+  /* その他の設定 */
+
+  position: relative;
+  z-index: 1;
+  padding: 100px 0; /* 例：上下80px、左右0px */
+}
+
+/* コンテンツを中央に寄せるための共通コンテナ */
+.voice-section .container {
+  max-width: 1200px; /* 例：コンテンツの最大幅 */
+  margin: 0 auto; /* 中央寄せ */
+  padding: 0 20px; /* 左右の余白（コンテンツが画面端に張り付かないように） */
+}
+
+.voice-section .section-title {
+  text-align: center; /* 内部のアイコンとh2を中央寄せ */
+  margin-bottom: 40px; /* 下部との余白 */
+}
+
+.voice-section .voice-icon {
+  /* 💡 相対位置指定を有効にする */
+  position: relative;
+
+  /* ✅ 下にずらす距離を指定 */
+  top: 230px; /* 例: 50px分下に移動させる */
+  width: 450px;
+  display: block;
+  margin: 0 auto; /* 中央寄せ */
+}
+
+/* 💡 カードのコンテナをFlexboxにして横並びにする */
+.voice-section .voice-grid {
+  display: flex;
+  /* カード間のスペースを均等に空ける */
+  justify-content: space-between;
+  /* 画面幅が狭いときに折り返すように設定（レスポンシブ対応） */
+  flex-wrap: wrap;
+  /* カード間の隙間を設定 */
+  gap: 30px;
+}
+
+/* 💡 個々のカードの幅を設定（3列表示） */
+.voice-section .voice-card {
+  /* 3列表示にするため、幅を約3分の1に設定し、gapの分を引く */
+  width: calc(33.333% - 20px);
+  /* 念のため最小幅を設定 */
+  min-width: 280px;
+
+  text-align: center;
+  padding: 20px;
+
+  border-radius: 10px;
+  /* ... その他のスタイル ... */
+}
+
+.round-photo {
+  width: 80px;
+  display: block;
+  /* ❌ margin-top: 15px; などは削除または 0 に */
+  margin-top: 0;
+  margin-bottom: 15px;
 }
