@@ -415,6 +415,17 @@ header {
   z-index: 1; /* z-indexは低い値（例: 1）にし、他のコンテンツが背景の上にくるようにします */
 }
 
+.course__concept-section::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  z-index: -1;
+  background: url("../images/Vector.png") no-repeat center center;
+}
+
 .course__container {
   display: flex;
   flex-direction: column;
@@ -486,11 +497,9 @@ header {
 /* 💡 個々のカードの幅を調整 */
 .course-card {
   width: 50%; /* 2つで横に並べる */
-  /* 必要であれば背景やボーダーなどを設定 */
 }
 
 .course-header {
-  /* 内部のテキストやインライン要素を中央に寄せる */
   text-align: center;
   /* 必要に応じて上下の余白も調整 */
   margin-bottom: 10px;
@@ -528,27 +537,36 @@ header {
   list-style-position: inside;
 }
 
-/* お客様の声セクション */
-.voice-section {
-  /* 💡 背景色を設定 */
-  background-image: url("/images/Subtract.png"), url("/images/Frame\ 2556.png");
-
-  /* 2. サイズを画像ごとにカンマ区切りで指定 */
-  background-size: 700px, 1400px;
-
-  /* 3. 位置を画像ごとにカンマ区切りで指定 */
-  background-position: center center, top center; /* 最初の画像(Title)は left、2番目の画像(Union)は right */
-
-  /* 4. 繰り返しを画像ごとに指定（両方繰り返さない場合） */
-  background-repeat: no-repeat, no-repeat;
-
-  /* その他の設定 */
-
-  position: relative;
-  z-index: 1;
-  padding: 100px 0; /* 例：上下80px、左右0px */
+/* 💡 共通スタイル: absolute でセクション全体を覆う */
+.voice-background-subtract,
+.voice-background-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* セクションの高さいっぱいにする */
+  pointer-events: none; /* コンテンツ操作の邪魔にならないように */
 }
 
+/* 💡 最も奥の背景 (Subtract.png) */
+.voice-background-subtract {
+  background-image: url("/images/Subtract.png");
+  /* ✅ コンテンツ全体を覆うように、サイズと位置を調整 */
+  background-size: contain; /* サイズを調整（contain または 1200px auto など） */
+  background-position: center 50%; /* 垂直方向の中央に調整 */
+  background-repeat: no-repeat;
+  z-index: -1; /* コンテンツの後ろに隠す */
+}
+
+/* 💡 中間の背景 (Frame 2556.png) */
+.voice-background-frame {
+  background-image: url("/images/Frame\ 2556.png");
+  /* ✅ 必要に応じてサイズと位置を調整 */
+  background-size: cover; /* または auto */
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0; /* Subtractよりも手前、コンテンツよりも奥 */
+}
 /* コンテンツを中央に寄せるための共通コンテナ */
 .voice-section .container {
   max-width: 1200px; /* 例：コンテンツの最大幅 */
@@ -603,4 +621,159 @@ header {
   /* ❌ margin-top: 15px; などは削除または 0 に */
   margin-top: 0;
   margin-bottom: 15px;
+}
+
+.access__container {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1200px;
+  background-color: #f0f5e1;
+
+  background-image: url("/images/Vector.png");
+
+  /* 2. サイズを画像ごとにカンマ区切りで指定 */
+  background-size: 1530px;
+
+  /* 3. 位置を画像ごとにカンマ区切りで指定 */
+  background-position: top; /* 最初の画像(Title)は left、2番目の画像(Union)は right */
+
+  /* 4. 繰り返しを画像ごとに指定（両方繰り返さない場合） */
+  background-repeat: no-repeat, no-repeat;
+
+  /* その他の設定 */
+
+  position: relative;
+  z-index: 1; /* z-indexは低い値（例: 1）にし、他のコンテンツが背景の上にくるようにします */
+}
+
+.access__section-title {
+  text-align: center;
+}
+.access__icon {
+  display: block;
+  margin: auto;
+  margin-bottom: 40px;
+  width: 332px;
+}
+.access__access-grid {
+  display: flex;
+  justify-content: space-between; /* 左右に広げる */
+  gap: 40px; /* 情報とマップの間の隙間 */
+  align-items: flex-start; /* 上端を揃える */
+}
+
+.access__access-info {
+  /* 情報ブロックの幅を調整 */
+  width: 45%;
+  /* または */
+  /* flex: 1; */
+}
+
+.access-map {
+  /* マップブロックの幅を調整 */
+  width: 55%;
+}
+
+.access-map iframe {
+  width: 100%; /* iframeを親要素の幅いっぱいに広げる */
+  height: 450px; /* 高さを維持 */
+  display: block;
+}
+.access__access-info h3 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #468459;
+  margin-bottom: 10px;
+}
+.access__access-info p {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 150%;
+}
+
+.access-schedule {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.access-schedule strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.access-schedule table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.access-schedule thead {
+  background-color: #468459;
+}
+
+.access-schedule th {
+  padding: 12px 8px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.access-schedule th:last-child {
+  border-right: none;
+}
+
+.access-schedule th:first-child {
+  background-color: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.access-schedule tbody td {
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.access-schedule tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.circle-mark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #468459;
+  border-radius: 50%;
+}
+
+/* ダッシュマーク（休みの日用） */
+.dash-mark {
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background-color: #ccc;
+}
+
+.access__link-with-arrow {
+  display: inline-block;
+  background-color: #1b9240;
+  border: solid 2px #ffffffff;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 1em;
 }
