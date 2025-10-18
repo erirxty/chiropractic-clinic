@@ -483,7 +483,7 @@ header {
   /* ❌ width: 50%; を修正 */
   width: 55%;
   display: block;
-  margin-top: 0; /* 親要素の flex-start に任せるため、個別の margin は削除推奨 */
+  margin: auto;
 }
 
 /* 💡 保険診療と自費診療を横並びにする */
@@ -537,10 +537,9 @@ header {
   list-style-position: inside;
 }
 
-/* 💡 共通スタイル: absolute でセクション全体を覆う */
-.voice-background-subtract,
+.voice-section .voice-background-subtract,
 .voice-background-frame {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -551,11 +550,11 @@ header {
 /* 💡 最も奥の背景 (Subtract.png) */
 .voice-background-subtract {
   background-image: url("/images/Subtract.png");
-  /* ✅ コンテンツ全体を覆うように、サイズと位置を調整 */
+
   background-size: contain; /* サイズを調整（contain または 1200px auto など） */
   background-position: center 50%; /* 垂直方向の中央に調整 */
   background-repeat: no-repeat;
-  z-index: -1; /* コンテンツの後ろに隠す */
+  z-index: 0; /* コンテンツの後ろに隠す */
 }
 
 /* 💡 中間の背景 (Frame 2556.png) */
